@@ -9,7 +9,10 @@ import {
     NumberInput,
     BooleanInput,
     NumberField,
-    BooleanField
+    BooleanField,
+    Edit,
+    DisabledInput,
+    EditButton
 } from 'admin-on-rest';
 
 // const ProductListFilter = (props) => (
@@ -28,6 +31,7 @@ export const ProductList = (props) => (
             <NumberField source="pvp" options={{style: 'currency', currency: 'EUR'}}/>
             <NumberField source="pve" options={{style: 'currency', currency: 'EUR'}}/>
             <BooleanField source="activated"/>
+            <EditButton/>
         </Datagrid>
     </List>
 );
@@ -41,4 +45,16 @@ export const ProductCreate = (props) => (
             <BooleanInput source="activated"/>
         </SimpleForm>
     </Create>
+);
+
+export const ProductEdit = props => (
+    <Edit {...props}>
+        <SimpleForm>
+            <DisabledInput source="id"/>
+            <TextInput source="name"/>
+            <NumberInput source="pvp"/>
+            <NumberInput source="pve"/>
+            <BooleanInput source="activated"/>
+        </SimpleForm>
+    </Edit>
 );
