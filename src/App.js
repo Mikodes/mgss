@@ -2,10 +2,10 @@ import React from 'react';
 import {Admin, Resource} from 'admin-on-rest';
 
 
-import {RestClient} from 'aor-firebase-client';
+import {RestClient, AuthClient} from 'aor-firebase-client';
 import {ProductCreate, ProductList, ProductEdit} from './products/products';
 import {BuyInCreate, BuyInList} from './products/checkin';
-import {OrderList} from './products/orders';
+// import {OrderList} from './products/orders';
 import {ClientCreate, ClientList, ClientShow} from './clients/Clients';
 
 
@@ -26,10 +26,12 @@ const trackedResources = ['productos', 'users', 'recargas', 'clientes',]
 const App = () => (
     <Admin title="Medical Green Solution" restClient={RestClient(trackedResources, firebaseConfig)}>
 
-        <Resource name="productos" list={ProductList} create={ProductCreate} edit={ProductEdit} icon={ProductIcon}/>
         <Resource name="recargas" list={BuyInList} create={BuyInCreate} icon={RecargaIcon}/>
-        <Resource name="orders" list={OrderList} create={BuyInCreate} icon={OrderIcon}/>
         <Resource name="clientes" list={ClientList} create={ClientCreate} show={ClientShow} icon={ClientIcon}/>
+        <Resource name="productos" list={ProductList} create={ProductCreate} edit={ProductEdit} icon={ProductIcon}/>
+
+        {/*<Resource name="orders" list={OrderList} create={BuyInCreate} icon={OrderIcon}/>*/}
+
 
         <Resource name="users"/>
 

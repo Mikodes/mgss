@@ -15,13 +15,6 @@ import {
     EditButton
 } from 'admin-on-rest';
 
-// const ProductListFilter = (props) => (
-//     <Filter {...props}>
-//         <TextInput label="Search" source="q" alwaysOn />
-//         <TextInput label="Title" source="title" defaultValue="Hello, World!" />
-//     </Filter>
-// );
-
 
 export const ProductList = (props) => (
     <List {...props}>
