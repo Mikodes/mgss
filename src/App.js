@@ -2,15 +2,12 @@ import React from 'react';
 import {Admin, Resource} from 'admin-on-rest';
 
 
-import {RestClient, AuthClient} from 'aor-firebase-client';
-import {ProductCreate, ProductList, ProductEdit} from './products/products';
-import {BuyInCreate, BuyInList} from './products/checkin';
-// import {OrderList} from './products/orders';
-import {ClientCreate, ClientList, ClientShow} from './clients/Clients';
-
-
+import {RestClient} from 'aor-firebase-client';
+import {ProductCreate, ProductEdit, ProductList} from './products';
+import {RechargeCreate, RechargeList} from './recharge';
+import {ClientCreate, ClientEdit, ClientList, ClientShow} from "./clients";
+import {CommandCreate, CommandIcon, CommandList} from "./commands";
 import ClientIcon from 'material-ui/svg-icons/action/account-box';
-import OrderIcon from 'material-ui/svg-icons/action/shopping-basket';
 import RecargaIcon from 'material-ui/svg-icons/editor/attach-money';
 import ProductIcon from 'material-ui/svg-icons/maps/local-florist';
 
@@ -22,15 +19,15 @@ const firebaseConfig = {
     storageBucket: "mgss-314d2.appspot.com",
     messagingSenderId: "774019699994"
 };
-const trackedResources = ['productos', 'users', 'recargas', 'clientes',]
+const trackedResources = ['productos', 'users', 'aportaciones', 'clientes', 'orders']
 const App = () => (
-    <Admin title="Medical Green Solution" restClient={RestClient(trackedResources, firebaseConfig)}>
-
-        <Resource name="recargas" list={BuyInList} create={BuyInCreate} icon={RecargaIcon}/>
-        <Resource name="clientes" list={ClientList} create={ClientCreate} show={ClientShow} icon={ClientIcon}/>
+    <Admin title="Medical Green Solution"
+           restClient={RestClient(trackedResources, firebaseConfig)}>
+        <Resource name="clientes" list={ClientList} create={ClientCreate} edit={ClientEdit} show={ClientShow}
+                  icon={ClientIcon}/>
         <Resource name="productos" list={ProductList} create={ProductCreate} edit={ProductEdit} icon={ProductIcon}/>
-
-        {/*<Resource name="orders" list={OrderList} create={BuyInCreate} icon={OrderIcon}/>*/}
+        <Resource name="aportaciones" list={RechargeList} create={RechargeCreate} icon={RecargaIcon}/>
+        <Resource label="Pedidos" name="orders" create={CommandCreate} list={CommandList} icon={CommandIcon}/>
 
 
         <Resource name="users"/>
